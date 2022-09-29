@@ -4,16 +4,19 @@
 <title>Login</title>
 
 <h3>Login</h3>
-<form class="login_form" method="post" name="form" onsubmit="return validated()">
-    <label for="uname">Username</label><br>
-    <input type="text" id="uname" name="uname"><br>
-    <div id="uname_error">Please enter the correct Username</div>
-    <label for="passwd">Password</label><br>
-    <input type="password" id="passwd" name="passwd"><br>
-    <div id="passwd_error">Please enter the correct Password</div> 
-    <input type="submit" value="Login">
-    <script src="login.js"></script>
-</form>
+<body>
+    <form class="login_form" method="post" name="form" onsubmit="validated()">
+        <label for="uname">Username</label><br>
+        <input type="text" id="uname" name="uname"><br>
+        <div id="uname_error">Please enter the correct Username</div>
+        <label for="passwd">Password</label><br>
+        <input type="password" id="passwd" name="passwd"><br>
+        <div id="passwd_error">Please enter the correct Password</div> 
+        <input type="submit" value="Login">
+        <script src="login.js"></script>
+    </form>
+</body>
+
 
 
 </html>
