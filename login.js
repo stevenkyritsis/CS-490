@@ -2,9 +2,6 @@
 var email = document.forms['form']['uname'];
 var passwd = document.forms['form']['passwd'];
 
-var email_error = document.getElementById('uname_error');
-var passwd_error = document.getElementById('passwd_error');
-
 function validated(){
     let name = document.forms["form"]["uname"].value;
     let pass = document.forms["form"]["passwd"].value;
@@ -14,11 +11,11 @@ function validated(){
     }
     
     if (name == "student" && pass == "password"){
-        location.replace("/student.html");
+        location.href = "/student.html";
         //return true;
     }
     else if (name == "teacher" && pass == "password"){
-        location.replace("/teacher.html");
+        location.href = "/teacher.html";
         //return true;
         log("true");
         console("message");
