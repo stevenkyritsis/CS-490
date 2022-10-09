@@ -21,7 +21,7 @@ mysqli_select_db( $db, $table );
 $username = $_POST [ "username" ] ;
 $password = $_POST [ "password" ] ;
 
-$s = "SELECT pwd from USER INFO where USER ='$username'";
+$s = "SELECT passwd from USER INFO where USER ='$username'";
 $t = mysqli_query($db,$s);
 $row = mysqli_fetch_row($t);
 $thepassword = $row[1];
