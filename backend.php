@@ -27,6 +27,7 @@ $row = mysqli_fetch_array($result);
 mysqli_close($db);
 if($row['PASSWD']!=NULL)
     $hash_pass = password_hash($row['PASSWD'],1);
-$result_arr = array('username' => $row['UNAME'], 'password' => $hash_pass, 'role' => $row['ROLE']);
+//$result_arr = array('username' => $row['UNAME'], 'password' => $hash_pass, 'role' => $row['ROLE']);
+$result_arr = array('role' => $row['ROLE']);
 echo (json_encode($result_arr)); 
 ?>
