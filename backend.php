@@ -16,7 +16,7 @@ if (mysqli_connect_errno())
     echo "FAILED CONNECTION: " . mysqli_connect_error();
   }
 
-mysqli_select_db( $db, $table ); 
+mysqli_select_db($db, $table); 
 
 $username = $_POST [ "username" ] ;
 $password = $_POST [ "password" ] ;
