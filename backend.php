@@ -1,13 +1,13 @@
 <?php
 
-$recieved = json_decode(file_get_contents("php://input"), true);
+$data = $_POST;
 
 $host = "sql2.njit.edu";
 $user =  "sak76";
 $table  = "users";
 $pwd = "##Tessy12345";
 
-$db = mysqli_connect($host,$user, $pwd);
+$db = mysqli_connect($host,$user, $pwd, $user);
 
 if (mysqli_connect_errno())
   {	  
@@ -16,24 +16,18 @@ if (mysqli_connect_errno())
 
 mysqli_select_db($db,$table); 
 
-$username = $_POST['user'];
-$password = $_POST['passwd'];
+$username = $data['username'];
+$password = $data['password'];
+$sql = "SELECT * FROM 'users' WHERE UNAME = '$username' AND PASSWD = '$password'";
+$result = mysqli_query ($db,$sql);
 
-$result = mysqli_query ($db,"SELECT * FROM 'users'
-	WHERE 'USER' LIKE '$username'
-	AND PASSWD LIKE '$password'
-	");
+$row = mysqli_fetch_array($result);
+mysqli_close($db);
+if($row['PASSWD']!=NULL)
+    $hash_pass = password_hash($row['PASSWD'],1);
+$result_arr = array('username' => $row['UNAME'], 'password' => $hash_pass, 'role' => $row['ROLE']);
+echo (json_encode($result_arr));
 
-if ($row = mysqli_fetch_array($result)) {
-
-  do {
-    print $row["USER"];
-    print (" ");
-    print $row["PASSWD"];
-    print("<p>");
-  } while($row = mysql_fetch_array($result));
-  } else {print "Sorry, no records were found!";
-  }
 /*
 $s = "SELECT * FROM 'users' WHERE USER ='$username'";
 $t = mysqli_query($db,$s);
