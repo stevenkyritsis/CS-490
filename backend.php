@@ -1,10 +1,15 @@
 <?php
 
-$data = $_POST;
+//$data = $_POST;
 $host = "sql2.njit.edu";
 $user =  "sak76";
 $table  = "users";
 $pwd = "##Tessy12345";
+
+$indata = file_get_contents('php://input');
+$data = json_decode($indata);
+
+echo $data->username;
 
 $db = mysqli_connect($host,$user, $pwd, $user);
 
@@ -15,8 +20,8 @@ if (mysqli_connect_errno())
 
 mysqli_select_db($db,$table); 
 
-$username = $data['username'];
-$password = $data['password'];
+$username = $data->username;
+$password = $data->password;
 $sql = "SELECT * FROM users WHERE UNAME = '$username' AND PASSWD = '$password'";
 $result = mysqli_query ($db,$sql);
 if(!($result)){
