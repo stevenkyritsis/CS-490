@@ -23,4 +23,16 @@ mysqli_select_db($db,$table);
 
 $sql = "INSERT INTO $table VALUES ('$index', '$question', '$answer')";
 
+$result = mysqli_query ($db,$sql);
+if(!($result)){
+  echo mysqli_error($db);
+}
+//echo $result;
+
+mysqli_close($db);
+
+$result_arr = array('STATUS' => $result);
+
+echo(json_encode($result_arr));
+
 ?>
