@@ -5,14 +5,7 @@ $user =  "sak76";
 $table  = "questions";
 $pwd = "##Tessy12345";
 
-$indata = file_get_contents('php://input');
-$data = json_decode($indata);
-
 $db = mysqli_connect($host,$user, $pwd, $user);
-
-$index = $data->index;
-$question = $data->question;
-$answer = $data->answer;
 
 if (mysqli_connect_errno())
   {	  
@@ -24,17 +17,39 @@ mysqli_select_db($db,$table);
 $sql = "SELECT * FROM $table";
 
 $result = mysqli_query ($db,$sql);
-if(!($result)){
+
+if((!$result)){
   echo mysqli_error($db);
 }
-//$row = mysqli_fetch_array($result);
 
-while ($row = mysqli_fetch_assoc($result)) { // Important line !!! Check summary get row on array ..
-  foreach ($row as $field => $value) { // I you want you can right this line like this: foreach($row as $value) {
-      echo $value; // I just did not use "htmlspecialchars()" function. 
+//$row = mysqli_fetch_array($result);
+$result_arr = [];
+/*
+while ($row = mysqli_fetch_assoc($result)) {
+  foreach ($row as $field => $value) {
+      $result_arr[$field] = $value; 
   }
 }
+*/
+
+while($row = $result->fetch_assoc()) {
+  /*if (!empty($result_arr)){
+    $result_arr = array_merge($result_arr, array('index' => $row['INDEX'], 'question' => $row['question'], 'answer' => $row['answer']));
+  }
+  else{
+    $result_arr = array('index' => $row['INDEX'], 'question' => $row['question'], 'answer' => $row['answer']);
+  }*/
+  $result_arr = array('index' => $row['INDEX'], 'question' => $row['question'], 'answer' => $row['answer']);
+  $json = json_encode($result_arr);
+  echo $json;
+  
+}
+
 mysqli_close($db);
+
+//$json = json_encode($result_arr);
+
+//echo $json;
 //$result_arr = array('question' => $row['question'], 'answer' => $row['answer']);
 
 //echo(json_encode($result_arr));
