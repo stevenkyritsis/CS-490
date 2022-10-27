@@ -10,7 +10,9 @@ $indata = file_get_contents('php://input');
 
 $data = json_decode($indata);
 
-$exam_id = $data->exam_id;
+$exam_id = $data ->eID;
+$question_id = $data->index;
+$grade = $data->points;
 
 if (mysqli_connect_errno())
   {	  
@@ -19,18 +21,13 @@ if (mysqli_connect_errno())
 
 mysqli_select_db($db,$table); 
 
-$sql = "SELECT * FROM $table WHERE exam_id = '$exam_id'";
-$result = mysqli_query ($db,$sql);
+$sql = "INSERT INTO $table (`exam_id`, `questionid`, `grade`) VALUES ('$exam_id', '$question_id', '$grade')";
 
-while($row = $result->fetch_assoc()) {
-    $result_arr[] = array('exam_id' => $row['exam_id'],
-       'question_id' => $row['questionid'],
-       'grade' => $row['grade']);  
-  }
+$result = mysqli_query($db,$sql);
+if(!($result)){
+  echo mysqli_error($db);
+}
 
 mysqli_close($db);
 
-$json = json_encode($result_arr);
-
-echo $json;
 ?>

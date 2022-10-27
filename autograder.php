@@ -9,7 +9,7 @@ $pwd = "##Tessy12345";
 $db = mysqli_connect($host,$user, $pwd, $user);
 
 $sql1 = "SELECT * FROM $table1";
-$sql1 = "SELECT * FROM $table2";
+$sql2 = "SELECT * FROM $table2";
 
 $result1 = mysqli_query($db,$sql1);
 $result2 = mysqli_query($db,$sql2);
@@ -26,9 +26,7 @@ while($row1 = $result1->fetch_assoc()) {
     $result1_arr1[] = array('index' => $row['INDEX'],
        'question' => $row['question'],
        'test1' => $row['test1'],
-       'test2' => $row['test2'],
-       'topic' => $row['topic'], 
-       'difficulty' => $row['difficulty']);  
+       'test2' => $row['test2']);  
   }
   
 //This while loop is for the users' answers table data
