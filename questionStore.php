@@ -10,7 +10,6 @@ $data = json_decode($indata);
 
 $db = mysqli_connect($host,$user, $pwd, $user);
 
-$index = $data->qID;
 $question = $data->question;
 $test1 = $data->test1;
 $test2 = $data->test2;
@@ -24,7 +23,7 @@ if (mysqli_connect_errno())
 
 mysqli_select_db($db,$table); 
 
-$sql = "INSERT INTO $table VALUES ('$index', '$question', '$test1', '$test2', '$topic', '$difficulty')";
+$sql = "INSERT INTO $table (`question`, `test1`, `test2`, `topic`, `difficulty`) VALUES ('$question', '$test1', '$test2', '$topic', '$difficulty')";
 
 $result = mysqli_query ($db,$sql);
 if(!($result)){
