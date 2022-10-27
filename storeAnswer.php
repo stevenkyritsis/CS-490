@@ -2,7 +2,7 @@
 
 $host = "sql2.njit.edu";
 $user =  "sak76";
-$table  = "questions";
+$table  = "answers";
 $pwd = "##Tessy12345";
 
 $indata = file_get_contents('php://input');
@@ -10,11 +10,10 @@ $data = json_decode($indata);
 
 $db = mysqli_connect($host,$user, $pwd, $user);
 
-$question = $data->question;
-$test1 = $data->test1;
-$test2 = $data->test2;
-$topic = $data->topic;
-$difficulty = $data->difficulty;
+$exam_id = $data->eID;
+$question_id = $data->qID;
+$answer = $data->answer;
+$student_id = $data->stuID;
 
 if (mysqli_connect_errno())
   {	  
@@ -23,7 +22,7 @@ if (mysqli_connect_errno())
 
 mysqli_select_db($db,$table); 
 
-$sql = "INSERT INTO $table (`question`, `test1`, `test2`, `topic`, `difficulty`) VALUES ('$question', '$test1', '$test2', '$topic', '$difficulty')";
+$sql = "INSERT INTO $table (`exam_id`, `question_id`, `answer`, `student_id`) VALUES ('$exam_id', '$question_id', '$answer', '$student_id')";
 
 $result = mysqli_query($db,$sql);
 if(!($result)){

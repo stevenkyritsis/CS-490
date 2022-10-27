@@ -25,7 +25,6 @@ $result = mysqli_query ($db,$sql);
 while($row = $result->fetch_assoc()) {
     $result_arr[] = array('exam_id' => $row['exam_id'],
        'q_id' => $row['question_id'],
-       'status' => $row['status'],
        'grade' => $row['grade']);  
   }
 
