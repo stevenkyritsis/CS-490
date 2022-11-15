@@ -13,6 +13,9 @@ $db = mysqli_connect($host,$user, $pwd, $user);
 $question = $data->question;
 $test1 = $data->test1;
 $test2 = $data->test2;
+$test3 = $data->test3;
+$test4 = $data->test4;
+$test5 = $data->test5;
 $topic = $data->topic;
 $difficulty = $data->difficulty;
 

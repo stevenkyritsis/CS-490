@@ -3,8 +3,8 @@
 import sys
 
 data = sys.argv[1]
-answer1 = sys.argv[2]
-answer2 = sys.argv[2]
+answer_array = sys.argv[2]
+answer2 = sys.argv[3]
 
 listed = data.split('\n')
 
@@ -21,6 +21,7 @@ for i in range(len(listed)):
         else:
             status = False 
     except IndexError:
+        status = False
         print(status)
         exit
 
