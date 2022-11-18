@@ -4,25 +4,23 @@ import sys
 
 data = sys.argv[1]
 answer_array = sys.argv[2]
-answer2 = sys.argv[3]
 
 listed = data.split('\n')
 
-answer1_list = answer1.split('\n')
-answer2_list = answer2.split('\n')
+status = []
 
-status = False
-
-for i in range(len(listed)):
-    try:
-        if listed[i] == answer1_list[i] or listed[i] == answer2_list:
-            status = True
-            continue
-        else:
-            status = False 
-    except IndexError:
-        status = False
-        print(status)
-        exit
+for i in range(len(answer_array)):
+        answer_list = answer_array[i].split('\n')
+        for j in range(len(listed)):
+            try:
+                if listed[j] == answer_list[i] or listed[i]:
+                    status.append([True])
+                    break
+                else:
+                    status.append(False) 
+            except IndexError:
+                status = False
+                print(status)
+                exit
 
 print(status)

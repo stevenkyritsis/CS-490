@@ -2,7 +2,7 @@
 
 $host = "sql2.njit.edu";
 $user =  "sak76";
-$table  = "questions";
+$table  = "question";
 $pwd = "##Tessy12345";
 
 $indata = file_get_contents('php://input');
