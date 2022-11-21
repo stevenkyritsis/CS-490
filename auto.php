@@ -10,7 +10,9 @@ $db = mysqli_connect($host,$user, $pwd, $user);
 
 $indata = file_get_contents('php://input');
 
+$user = $indata->$username;
 $exam_num = $indata->exam_id;
+$questions = $indata->questions;
 
 if (mysqli_connect_errno())
   {	  
