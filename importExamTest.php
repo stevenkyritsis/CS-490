@@ -8,26 +8,40 @@ $db = mysqli_connect($host,$user, $pwd, $user);
 
 $indata = file_get_contents('php://input');
 
-$data = json_decode($indata);
+$arr = json_decode($indata);
 
-$exam_id = $data ->eID;
-$question_id = $data->index;
-$grade = $data->points;
+$i = 0; 
+foreach($arr as $row){ 
 
-if (mysqli_connect_errno())
+  $exam_id = $arr[$i]['eID'];
+  $question_id = $arr[$i]['index'];
+  $grade = $arr[$i]['points'];
+
+  $sql = "INSERT INTO $table (`exam_id`, `questionid`, `grade`) VALUES ('$exam_id', '$question_id', '$grade')";
+  
+  if (mysqli_connect_errno())
   {	  
     echo "FAILED CONNECTION: " . mysqli_connect_error();
   }
 
-mysqli_select_db($db,$table); 
+  mysqli_select_db($db,$table); 
+  $result = mysqli_query($db,$sql);
+  if(!($result)){
+    echo mysqli_error($db);
+  }
+  $i++;
+}
 
+
+
+/*
 $sql = "INSERT INTO $table (`exam_id`, `questionid`, `grade`) VALUES ('$exam_id', '$question_id', '$grade')";
 
 $result = mysqli_query($db,$sql);
 if(!($result)){
   echo mysqli_error($db);
 }
-
+*/
 mysqli_close($db);
 
 ?>

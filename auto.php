@@ -24,7 +24,7 @@ if (mysqli_connect_errno())
 
 mysqli_select_db($db,$table); 
 
-$answers_sql = "SELECT $table1. FROM $table1, $table2 WHERE '$table1'.exam_id = $exam_num
+$answers_sql = "SELECT $table1.student_id FROM $table1, $table2 WHERE '$table1'.exam_id = $exam_num
                         AND '$table1'.student_id = '$user'";
 
 

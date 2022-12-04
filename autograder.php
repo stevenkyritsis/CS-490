@@ -26,7 +26,10 @@ while($row1 = $result1->fetch_assoc()) {
     $result1_arr1[] = array('index' => $row['INDEX'],
        'question' => $row['question'],
        'test1' => $row['test1'],
-       'test2' => $row['test2']);  
+       'test2' => $row['test2'],
+       'test3' => $row['test3'],
+       'test4' => $row['test4'],
+       'test5' => $row['test5']);  
   }
   
 //This while loop is for the users' answers table data
