@@ -33,9 +33,19 @@ if ($student == "all"){
   $result_arr[] = array('student_id' => $row['UNAME']);
   }
 
-  $i = 1;
+  $i = 0;
   
-  
+  while($i < count($result_arr)){
+    $sID = $result_arr[$i]->student_id;
+    $newStatus_sql = "INSERT INTO $table (exam_id,student_id,grade) VALUES('$exam', '$sID', 0)";
+    
+    $result_new = mysqli_query($db,$getStudents_sql);
+    if(!($result_new)){
+      echo mysqli_error($db);
+    }
+    
+    $i = $i + 1;
+  }
 
 }
 
