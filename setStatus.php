@@ -18,23 +18,38 @@ if (mysqli_connect_errno())
     echo "FAILED CONNECTION: " . mysqli_connect_error();
   }
 
-mysqli_select_db($db,$table); 
+//mysqli_select_db($db,$table);
+mysqli_select_db($db,"users");
 
 if ($student == "all"){
-  $sql = "UPDATE $table SET `STATUS`= '$newStatus' WHERE `exam_id`= '$exam'";
+
+  $getStudents_sql = "SELECT * FROM `users` WHERE `ROLE`= 'STUDENT'";
+  $result = mysqli_query($db,$getStudents_sql);
+  if(!($result)){
+    echo mysqli_error($db);
+  }
+
+  while($row = $result->fetch_assoc()) {
+  $result_arr[] = array('student_id' => $row['UNAME']);
+  }
+
+  $i = 1;
   
+  
+
 }
 
+/*$sqlUpdate = "UPDATE $table SET `STATUS`= '$newStatus' WHERE `exam_id`= '$exam'";
 
 $result = mysqli_query($db,$sql);
 if(!($result)){
   echo mysqli_error($db);
-}
-//echo $result;
-
+}*/
+echo json_encode($result_arr);
+echo count($result_arr);
 mysqli_close($db);
-
+/*
 $result_arr = array('STATUS' => $result);
 
 echo(json_encode($result_arr));
-?>
+*/?>
