@@ -35,5 +35,6 @@ while($row = $result->fetch_assoc()) {
      'comments' => $row['comments']);  
 }
 
+echo json_encode($result_arr);
 
 ?>
