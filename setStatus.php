@@ -13,6 +13,8 @@ $exam = $data->eID;
 $newStatus = $data->status;
 $student = $data->student;
 
+$nice = false;
+
 if (mysqli_connect_errno())
   {	  
     echo "FAILED CONNECTION: " . mysqli_connect_error();
@@ -20,46 +22,52 @@ if (mysqli_connect_errno())
 
 //mysqli_select_db($db,$table);
 mysqli_select_db($db,"users");
+$getStudents_sql = "SELECT * FROM `users` WHERE `ROLE`= 'STUDENT'";
+$resultStudent = mysqli_query($db,$getStudents_sql);
 
-if ($student == "all"){
+if(!($resultStudent)){
+  echo mysqli_error($db);
+}
 
-  $getStudents_sql = "SELECT * FROM `users` WHERE `ROLE`= 'STUDENT'";
-  $result = mysqli_query($db,$getStudents_sql);
-  if(!($result)){
-    echo mysqli_error($db);
-  }
-
-  while($row = $result->fetch_assoc()) {
+while($row = $resultStudent->fetch_assoc()) {
   $result_arr[] = array('student_id' => $row['UNAME']);
-  }
+}
 
-  $i = 0;
-  
+$i = 0;
+if ($student == "all"){  
   while($i < count($result_arr)){
-    $sID = $result_arr[$i]->student_id;
-    $newStatus_sql = "INSERT INTO $table (exam_id,student_id,grade) VALUES('$exam', '$sID', 0)";
-    
-    $result_new = mysqli_query($db,$getStudents_sql);
+    $sID = $result_arr[$i]['student_id'];
+    $newStatus_sql = "INSERT INTO $table (STATUS,exam_id,student_id,grade,comments) VALUES('$newStatus','$exam', '$sID', 0,'')";
+    $result_new = mysqli_query($db,$newStatus_sql);
+    $nice = true;
     if(!($result_new)){
       echo mysqli_error($db);
     }
-    
-    $i = $i + 1;
+    $i++;
   }
-
+}
+else{
+  while($i < count($result_arr)){
+    if($student == $result_arr[$i]['student_id']){
+      //SQL to update the database
+      $sqlUpdate = "UPDATE $table SET `STATUS`= '$newStatus' WHERE `exam_id`= '$exam' AND `student_id`= '$student'";
+      //Query 
+      $result = mysqli_query($db,$sqlUpdate);
+      if(!($result)){
+        echo mysqli_error($db);
+      }
+      //LOL this is to just return a true or false value to show that it was run okay
+      $nice = true;
+      //breaking out of the loop because there was a match
+      break;
+    }
+    $i++; 
+  }
 }
 
-/*$sqlUpdate = "UPDATE $table SET `STATUS`= '$newStatus' WHERE `exam_id`= '$exam'";
-
-$result = mysqli_query($db,$sql);
-if(!($result)){
-  echo mysqli_error($db);
-}*/
-echo json_encode($result_arr);
-echo count($result_arr);
 mysqli_close($db);
-/*
-$result_arr = array('STATUS' => $result);
+
+$result_arr = array('STATUS' => $nice);
 
 echo(json_encode($result_arr));
-*/?>
+?>
