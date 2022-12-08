@@ -28,7 +28,7 @@ if (mysqli_connect_errno())
 
 mysqli_select_db($db,$table); 
 
-$sql = "INSERT INTO $table (question, test1, test2, test3, test4, test5, topic, difficulty,) VALUES ('$question', '$test1', '$test2', '$test3', '$test4', '$test5', '$topic', '$difficulty')";
+$sql = "INSERT INTO $table (question, test1, test2, test3, test4, test5, topic, difficulty, con, cPoints) VALUES ('$question', '$test1', '$test2', '$test3', '$test4', '$test5', '$topic', '$difficulty','$constraint','$deduction')";
 
 $result = mysqli_query($db,$sql);
 if(!($result)){
