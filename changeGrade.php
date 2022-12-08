@@ -16,7 +16,7 @@ $student = $data->student_id;
 $sql = "UPDATE $table SET `grade`= $newGrade WHERE `INDEX`= '$index' AND `student_id`= '$student'";
 
 //Query 
-$result = mysqli_query($db,$sqlUpdate);
+$result = mysqli_query($db,$sql);
 if(!($result)){
     echo mysqli_error($db);
 }

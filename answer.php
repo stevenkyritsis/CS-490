@@ -22,7 +22,7 @@ if (mysqli_connect_errno())
 
 mysqli_select_db($db,$table); 
 
-$sql = "INSERT INTO $table (`exam_id`, `question_id`, `student_id`, `answer`) VALUES ('$exam_id', '$question_id', '$student_id', '$answer')";
+$sql = "INSERT INTO $table (`exam_id`, `question_id`, `student_id`, `answer`, `grade`, `comments`) VALUES ('$exam_id', '$question_id', '$student_id', '$answer', 0, '')";
 
 $result = mysqli_query($db,$sql);
 if(!($result)){
@@ -30,5 +30,7 @@ if(!($result)){
 }
 
 mysqli_close($db);
+
+echo json_encode($result);
 
 ?>

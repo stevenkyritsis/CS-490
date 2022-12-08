@@ -14,11 +14,11 @@ $comment = $data->comment;
 $student_id = $data->student_id;
 $index = $data->index;
 
-$sql = "UPDATE $table SET `comments`= $comment WHERE `INDEX`= '$index' AND `student_id`= '$student'";
+$sql = "UPDATE $table SET `comments`= '$comment' WHERE `INDEX`= '$index' AND `student_id`= '$student'";
 
 
 //Query 
-$result = mysqli_query($db,$sqlUpdate);
+$result = mysqli_query($db,$sql);
 if(!($result)){
     echo mysqli_error($db);
 }
