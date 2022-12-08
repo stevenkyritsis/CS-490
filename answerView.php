@@ -2,7 +2,7 @@
 
 $host = "sql2.njit.edu";
 $user =  "sak76";
-$table  = "question";
+$table  = "answers";
 $pwd = "##Tessy12345";
 
 $db = mysqli_connect($host,$user, $pwd, $user);
@@ -26,12 +26,13 @@ if((!$result)){
 $result_arr = [];
 
 while($row = $result->fetch_assoc()) {
-  $result_arr[] = array('index' => $row['questionid'],
-     'question' => $row['question'],
-     'test1' => $row['test1'],
-     'test2' => $row['test2'],
-     'topic' => $row['topic'], 
-     'difficulty' => $row['difficulty']);  
+  $result_arr[] = array('index' => $row['INDEX'],
+     'student_id' => $row['student_id'],
+     'exam_id' => $row['exam_id'],
+     'question_id' => $row['question_id'],
+     'answer' => $row['answer'], 
+     'grade' => $row['grade'],
+     'comments' => $row['comments']);  
 }
 
 
