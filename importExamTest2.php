@@ -28,24 +28,8 @@ foreach($arr as $row){
   $result = mysqli_query($db,$sql);
   if(!($result)){
     echo mysqli_error($db);
-  } else{
-    if ($i == 0){
-      $url = "https://afsaccess4.njit.edu/~sak76/setStatus.php";
-      $ch = curl_init($url);
-      $json = array('eID' => $exam_id, 'status' => 'HIDDEN', 'student' => 'all');
-      // Will return the response, if false it print the response
-      curl_setopt($ch, CURLOPT_POST, true);
-      //Payload
-      $payload = json_encode($json);
-      //Setting the headers
-      curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-      //Return
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);   
-      // Execute
-      $curlResult=curl_exec($ch);
-    }
-    $i++;
-  } 
+  }
+  $i++;
 }
 
 echo $result;

@@ -34,10 +34,10 @@ while($row = $resultStudent->fetch_assoc()) {
 }
 
 $i = 0;
-if ($student == "all"){  
+if ($student == "ALL"){  
   while($i < count($result_arr)){
     $sID = $result_arr[$i]['student_id'];
-    $newStatus_sql = "INSERT INTO $table (STATUS,exam_id,student_id,grade,comments) VALUES('$newStatus','$exam', '$sID', 0,'')";
+    $newStatus_sql = "INSERT INTO $table (STATUS,exam_id,student_id,grade) VALUES('$newStatus','$exam', '$sID', 0)";
     $result_new = mysqli_query($db,$newStatus_sql);
     $nice = true;
     if(!($result_new)){

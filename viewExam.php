@@ -7,11 +7,11 @@ $table2 = "question";
 $pwd = "##Tessy12345";
 $db = mysqli_connect($host,$user, $pwd, $user);
 
-$indata = file_get_contents('php://input');
+//$indata = file_get_contents('php://input');
 
-$data = json_decode($indata);
+//$data = json_decode($indata);
 
-$exam_id = $data->exam_id;
+//$exam_id = $data->exam_id;
 
 if (mysqli_connect_errno())
   {	  
@@ -20,7 +20,8 @@ if (mysqli_connect_errno())
 
 mysqli_select_db($db,$table); 
 
-$sql = "SELECT question.questionid, exam_id, question.question, grade FROM $table1, $table2 WHERE exam_id = '$exam_id' AND $table1.questionid = $table2.questionid";
+//$sql = "SELECT question.questionid, exam_id, question.question, grade FROM $table1, $table2 WHERE exam_id = '$exam_id' AND $table1.questionid = $table2.questionid";
+$sql = "SELECT question.questionid, exam_id, question.question, grade FROM $table1, $table2 WHERE $table1.questionid = $table2.questionid";
 //$result = mysqli_query($db,$sql);
 $result = $db->query($sql) or die($db->error);
 
