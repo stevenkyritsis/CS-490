@@ -18,7 +18,7 @@ $test4 = $data->test4;
 $test5 = $data->test5;
 $topic = $data->topic;
 $difficulty = $data->difficulty;
-$constraint = $data->constraint;
+$con = $data->constraint;
 $deduction = $data->deduction;
 
 if (mysqli_connect_errno())
@@ -28,7 +28,7 @@ if (mysqli_connect_errno())
 
 mysqli_select_db($db,$table); 
 
-$sql = "INSERT INTO $table (question, test1, test2, test3, test4, test5, topic, difficulty,) VALUES ('$question', '$test1', '$test2', '$test3', '$test4', '$test5', '$topic', '$difficulty')";
+$sql = "INSERT INTO $table (question, test1, test2, test3, test4, test5, topic, con,difficulty) VALUES ('$question', '$test1', '$test2', '$test3', '$test4', '$test5', '$topic', '$con','$difficulty')";
 
 $result = mysqli_query($db,$sql);
 if(!($result)){
